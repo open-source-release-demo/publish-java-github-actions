@@ -1,7 +1,7 @@
 # publish-java-github-actions
 Demo of how to get Github Actions to publish a Java Gradle based project to Maven Central.
 
-This project is documented in a [Medium article](https://medium.com/@pjfanning/publishing-your-first-open-source-library-with-gradle-50bd0b1cd3af).
+This project is documented in a [Medium article](https://medium.com/@pjfanning/using-github-actions-to-automatically-publish-gradle-build-artifacts-d71c915cfa4).
 
 ## License
 
