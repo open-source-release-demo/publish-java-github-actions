@@ -77,9 +77,9 @@ publishing {
         mavenJava(MavenPublication) {
             from(components.java)
             pom {
-                name = 'publish-java'
+                name = 'publish-java-github-actions'
                 description = 'Demo of how to publish a Java Gradle based project to Maven Central'
-                url = 'https://github.com/open-source-release-demo/publish-java'
+                url = 'https://github.com/open-source-release-demo/publish-java-github-actions'
                 licenses {
                     license {
                         name = 'The Apache License, Version 2.0'
@@ -93,9 +93,9 @@ publishing {
                     }
                 }
                 scm {
-                    url = 'https://github.com/open-source-release-demo/publish-java'
-                    connection = 'scm:git://github.com/open-source-release-demo/publish-java.git'
-                    developerConnection = 'scm:git://github.com/open-source-release-demo/publish-java.git'
+                    url = 'https://github.com/open-source-release-demo/publish-java-github-actions'
+                    connection = 'scm:git://github.com/open-source-release-demo/publish-java-github-actions.git'
+                    developerConnection = 'scm:git://github.com/open-source-release-demo/publish-java-github-actions.git'
                 }
             }
         }
