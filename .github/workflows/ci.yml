@@ -12,29 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up JDK 8
-        uses: actions/setup-java@v2 
+        uses: actions/setup-java@v3 
         with:
           java-version: '8'
           distribution: 'temurin'
-
-      - name: Setup Gradle Dependencies Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
-
-      - name: Setup Gradle Wrapper Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          cache: 'gradle'
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon
 
   publish:
     name: Publish Artifacts
@@ -43,24 +32,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up JDK 8
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: '8'
           distribution: 'temurin'
-
-      - name: Setup Gradle Dependencies Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
-
-      - name: Setup Gradle Wrapper Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          cache: 'gradle'
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
@@ -71,4 +49,4 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.PGP_SECRET }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.PGP_PASSPHRASE }}
-        run: ./gradlew publishToSonatype
+        run: ./gradlew publishToSonatype --no-daemon
